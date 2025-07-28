@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
+import PrivateRoute from "./PrivateRoute";
+import SocialDashboard from "./pages/SocialDashboard";
 
 export default function App() {
   return (
@@ -9,7 +10,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<Dashboard />}/>
+        <Route path="/social-dashbaord" element={<PrivateRoute><SocialDashboard/></PrivateRoute>} />
       </Routes>
     </Router>
   );
