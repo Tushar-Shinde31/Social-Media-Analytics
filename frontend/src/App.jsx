@@ -1,17 +1,25 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/Login";
-import RegisterPage from "./pages/Register";
-import PrivateRoute from "./PrivateRoute";
-import SocialDashboard from "./pages/SocialDashboard";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import SocialDashboard from './pages/SocialDashboard'
+import LoginPage from './pages/Login'
+import RegisterPage from './pages/Register'
 
-export default function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/social-dashbaord" element={<PrivateRoute><SocialDashboard/></PrivateRoute>} />
-      </Routes>
-    </Router>
-  );
+const appRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <SocialDashboard/>
+  },
+  {
+    path: '/login',
+    element: <LoginPage/>
+  },
+  {
+    path: '/register',
+    element: <RegisterPage/>
+  }
+])
+
+function App() {
+  return <RouterProvider router={appRouter}/>
 }
+
+export default App;
