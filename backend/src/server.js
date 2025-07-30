@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { pool } from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
 import cors from "cors";
+import socialRoutes from "./routes/social.routes.js";
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/social", socialRoutes);
 
 const PORT = process.env.PORT || 4000;
 
