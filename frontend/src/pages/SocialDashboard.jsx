@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
+import SocialCard from '../components/SocialCard';
+import { api } from '../utils/api';
 
 const platforms = [
   {
@@ -26,30 +28,94 @@ const platforms = [
 ];
 
 const SocialDashboard = () => {
+  const [notification, setNotification] = useState({ show: false, message: '', type: '' });
+  const [connectedPlatforms, setConnectedPlatforms] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const showNotification = (message, type = 'success') => {
+    setNotification({ show: true, message, type });
+    setTimeout(() => {
+      setNotification({ show: false, message: '', type: '' });
+    }, 3000);
+  };
+
+  // Fetch connected platforms on component mount
+  useEffect(() => {
+    const fetchConnectedPlatforms = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await api.get('/social/status', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        
+        const connectedPlatformsList = response.data.connected.map(item => 
+          item.platform.toLowerCase()
+        );
+        setConnectedPlatforms(connectedPlatformsList);
+      } catch (error) {
+        console.error('Failed to fetch connected platforms:', error);
+        showNotification('Failed to load connection status', 'error');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchConnectedPlatforms();
+  }, []);
+
+  const handleConnectSuccess = (platform, data) => {
+    showNotification(`${platform} connected successfully!`, 'success');
+    // Update the connected platforms list
+    setConnectedPlatforms(prev => [...prev, platform.toLowerCase()]);
+  };
+
+  const handleConnectError = (platform, error) => {
+    showNotification(`Failed to connect ${platform}: ${error}`, 'error');
+  };
+
+
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
       {/* Navbar */}
       <Navbar />
 
+      {/* Notification */}
+      {notification.show && (
+        <div className={`fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg transition-all duration-300 ${
+          notification.type === 'success' 
+            ? 'bg-green-500 text-white' 
+            : 'bg-red-500 text-white'
+        }`}>
+          {notification.message}
+        </div>
+      )}
+
       {/* Dashboard Content */}
       <div className="max-w-5xl mx-auto py-12 px-4">
         <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Connect Your Social Accounts</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {platforms.map((platform) => (
-            <div
-              key={platform.name}
-              className="flex flex-col items-center bg-white/90 rounded-2xl shadow-xl p-8 border border-gray-100 transition-transform hover:scale-105 hover:shadow-2xl"
-            >
-              <div>{platform.icon}</div>
-              <h2 className="text-xl font-bold text-gray-800 mb-2">{platform.name}</h2>
-              <button
-                className={`mt-4 w-full bg-gradient-to-r ${platform.color} text-white py-2 rounded-lg font-semibold shadow hover:opacity-90 transition-all`}
-              >
-                Connect
-              </button>
-            </div>
-          ))}
-        </div>
+        
+        {isLoading ? (
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {platforms.map((platform) => (
+              <SocialCard
+                key={platform.name}
+                platform={platform.name}
+                icon={platform.icon}
+                color={platform.color}
+                connected={connectedPlatforms.includes(platform.name.toLowerCase())}
+                onConnectSuccess={handleConnectSuccess}
+                onConnectError={handleConnectError}
+              />
+            ))}
+          </div>
+        )}
 
       {/* About/How it Works Section */}
       <div className="max-w-4xl mx-auto mt-10 mb-8 px-4">
