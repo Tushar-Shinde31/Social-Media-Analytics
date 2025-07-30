@@ -18,7 +18,7 @@ export default function AuthForm({ type }) {
 
       if (type === "login") {
         localStorage.setItem("token", res.data.token);
-        navigate("/social-dashbaord")
+        navigate("/")
         setMsg("Login successful!");
       } else {
         setMsg("Registration successful!");
