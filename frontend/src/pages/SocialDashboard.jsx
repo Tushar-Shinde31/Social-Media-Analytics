@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import SocialCard from '../components/SocialCard';
+import InstagramPosts from '../components/InstagramPosts';
 import { api } from '../utils/api';
 
 const platforms = [
@@ -116,6 +117,11 @@ const SocialDashboard = () => {
             ))}
           </div>
         )}
+
+        {/* Instagram Posts Section */}
+        <div className="mt-12">
+          <InstagramPosts />
+        </div>
 
       {/* About/How it Works Section */}
       <div className="max-w-4xl mx-auto mt-10 mb-8 px-4">

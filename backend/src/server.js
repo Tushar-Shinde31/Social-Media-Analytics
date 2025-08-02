@@ -4,6 +4,7 @@ import { pool } from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
 import cors from "cors";
 import socialRoutes from "./routes/social.routes.js";
+import instagramRoutes from "./routes/instagram.routes.js";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/social", socialRoutes);
+app.use("/api/instagram", instagramRoutes);
 
 const PORT = process.env.PORT || 4000;
 

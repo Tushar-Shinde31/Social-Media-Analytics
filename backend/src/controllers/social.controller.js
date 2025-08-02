@@ -1,14 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-/**
- * Save or update connected social account
- * Expected: req.body = { platform, accessToken, refreshToken }
- * Assumes req.user is already available via auth middleware
- */
 export const connectSocialAccount = async (req, res) => {
   const { platform, accessToken, refreshToken } = req.body;
-  const userId = req.user.userId; // comes from JWT middleware
+  const userId = req.user.userId;
 
   try {
     const existing = await prisma.socialAccount.findUnique({
@@ -68,6 +63,31 @@ export const getConnectedAccounts = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to fetch connected accounts" });
+  }
+};
+
+export const getInstagramPosts = async (req, res) => {
+  const userId = req.user.userId;
+
+  try {
+    const posts = await prisma.instagramPost.findMany({
+      where: { userId },
+      orderBy: { timestamp: 'desc' },
+      select: {
+        id: true,
+        caption: true,
+        mediaUrl: true,
+        mediaType: true,
+        likeCount: true,
+        commentCount: true,
+        timestamp: true,
+      },
+    });
+
+    res.json({ posts });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch Instagram posts" });
   }
 };
 

@@ -16,6 +16,7 @@ model User {
   created_at DateTime @default(now())
 
   socialAccounts SocialAccount[]
+  instagramPosts InstagramPost[]
 }
 
 model SocialAccount {
@@ -29,4 +30,17 @@ model SocialAccount {
   userId Int
 
   @@unique([userId, platform])
+}
+
+model InstagramPost {
+  id            String   @id            // Instagram post ID
+  caption       String?
+  mediaUrl      String
+  mediaType     String   // IMAGE, VIDEO, CAROUSEL_ALBUM
+  likeCount     Int
+  commentCount  Int
+  timestamp     DateTime
+
+  userId        Int
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
