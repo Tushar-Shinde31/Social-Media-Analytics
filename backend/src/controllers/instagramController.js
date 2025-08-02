@@ -1,13 +1,14 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
+//This saveInstagramPosts function is an Express controller that saves or updates a batch of Instagram posts for a user in the database using Prisma's upsert method.
 export const saveInstagramPosts = async (req, res) => {
   const userId = req.user.userId;
   const posts = req.body.posts;   
 
   try {
     for (const post of posts) {
-      await prisma.instagramPost.upsert({
+      await prisma.instagramPost.upsert({  // .upsert() is a shortcut method provided by Prisma that updates a record if it exists, or inserts a new one
         where: { id: post.id },
         update: {
           caption: post.caption,
@@ -37,6 +38,8 @@ export const saveInstagramPosts = async (req, res) => {
   }
 };
 
+
+// This getInstagramPosts function is a backend controller that fetches all Instagram posts for the currently authenticated user, ordered by time (most recent first).
 export const getInstagramPosts = async (req, res) => {
   const userId = req.user.userId;
 
