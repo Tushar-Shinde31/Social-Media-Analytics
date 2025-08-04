@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FaInstagram, FaHeart, FaComment, FaClock } from 'react-icons/fa';
+import { FaInstagram, FaHeart, FaComment, FaClock, FaChartBar } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { api } from '../utils/api';
 
 const InstagramPosts = () => {
@@ -98,12 +99,21 @@ const InstagramPosts = () => {
 
   return (
     <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-      <div className="flex items-center gap-3 mb-6">
-        <FaInstagram className="text-pink-500 text-2xl" />
-        <h2 className="text-2xl font-bold text-gray-800">Instagram Posts</h2>
-        <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm font-medium">
-          {posts.length} posts
-        </span>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <FaInstagram className="text-pink-500 text-2xl" />
+          <h2 className="text-2xl font-bold text-gray-800">Instagram Posts</h2>
+          <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm font-medium">
+            {posts.length} posts
+          </span>
+        </div>
+        <Link
+          to="/instagram-analytics"
+          className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+        >
+          <FaChartBar />
+          <span>View Analytics</span>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
