@@ -1,5 +1,5 @@
 import express from 'express';
-import { getInstagramPosts, saveInstagramPosts } from '../controllers/instagramController.js';
+import { getInstagramPosts, saveInstagramPosts } from '../controllers/instagram.controller.js';
 import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();

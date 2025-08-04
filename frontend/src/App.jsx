@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import SocialDashboard from './pages/SocialDashboard'
 import LoginPage from './pages/Login'
 import RegisterPage from './pages/Register'
+import InstagramAnalytics from './pages/dashboard/InstagramAnalytics'
 
 const appRouter = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const appRouter = createBrowserRouter([
   {
     path: '/register',
     element: <RegisterPage/>
+  },
+  {
+    path: '/instagram-analytics',
+    element: <InstagramAnalytics/>
   }
 ])
 
