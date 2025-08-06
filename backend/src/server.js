@@ -5,6 +5,8 @@ import authRoutes from "./routes/auth.routes.js";
 import cors from "cors";
 import socialRoutes from "./routes/social.routes.js";
 import instagramRoutes from "./routes/instagram.routes.js";
+import twitterRoutes from "./routes/twitter.routes.js";
+import youtubeRoutes from "./routes/youtube.routes.js";
 
 dotenv.config();
 
@@ -15,6 +17,8 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/social", socialRoutes);
 app.use("/api/instagram", instagramRoutes);
+app.use("/api/twitter", twitterRoutes);
+app.use("/api/youtube", youtubeRoutes);
 
 const PORT = process.env.PORT || 4000;
 

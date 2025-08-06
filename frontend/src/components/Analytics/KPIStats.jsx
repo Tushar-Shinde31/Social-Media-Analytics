@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaInstagram, FaHeart, FaComment, FaChartLine } from 'react-icons/fa';
 
+// key performance indicator component
 const KPIStats = ({ posts }) => {
   if (!posts || posts.length === 0) {
     return (

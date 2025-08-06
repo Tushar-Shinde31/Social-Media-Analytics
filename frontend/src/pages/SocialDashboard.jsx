@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin, FaChartLine, FaEye } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import SocialCard from '../components/SocialCard';
 import InstagramPosts from '../components/InstagramPosts';
+import { Link } from 'react-router-dom';
 import { api } from '../utils/api';
 
 const platforms = [
@@ -76,8 +77,6 @@ const SocialDashboard = () => {
     showNotification(`Failed to connect ${platform}: ${error}`, 'error');
   };
 
-
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
       {/* Navbar */}
@@ -95,82 +94,143 @@ const SocialDashboard = () => {
       )}
 
       {/* Dashboard Content */}
-      <div className="max-w-5xl mx-auto py-12 px-4">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Connect Your Social Accounts</h1>
+      <div className="max-w-7xl mx-auto py-12 px-4">
+        <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Social Media Analytics Dashboard</h1>
         
-        {isLoading ? (
-          <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {platforms.map((platform) => (
-              <SocialCard
-                key={platform.name}
-                platform={platform.name}
-                icon={platform.icon}
-                color={platform.color}
-                connected={connectedPlatforms.includes(platform.name.toLowerCase())}
-                onConnectSuccess={handleConnectSuccess}
-                onConnectError={handleConnectError}
-              />
-            ))}
-          </div>
-        )}
+        {/* Analytics Navigation Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <Link to="/overview" className="group">
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+              <div className="flex items-center justify-between mb-4">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-full">
+                  <FaChartLine className="text-white text-2xl" />
+                </div>
+                <FaEye className="text-gray-400 group-hover:text-gray-600 transition-colors" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Social Overview</h3>
+              <p className="text-gray-600 text-sm">Cross-platform analytics and insights</p>
+            </div>
+          </Link>
+
+          <Link to="/instagram-analytics" className="group">
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+              <div className="flex items-center justify-between mb-4">
+                <div className="bg-gradient-to-r from-pink-500 to-yellow-500 p-3 rounded-full">
+                  <FaInstagram className="text-white text-2xl" />
+                </div>
+                <FaEye className="text-gray-400 group-hover:text-gray-600 transition-colors" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Instagram Analytics</h3>
+              <p className="text-gray-600 text-sm">Posts, engagement, and growth metrics</p>
+            </div>
+          </Link>
+
+          <Link to="/twitter-analytics" className="group">
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+              <div className="flex items-center justify-between mb-4">
+                <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-3 rounded-full">
+                  <FaTwitter className="text-white text-2xl" />
+                </div>
+                <FaEye className="text-gray-400 group-hover:text-gray-600 transition-colors" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Twitter Analytics</h3>
+              <p className="text-gray-600 text-sm">Tweets, engagement, and audience insights</p>
+            </div>
+          </Link>
+
+          <Link to="/youtube-analytics" className="group">
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+              <div className="flex items-center justify-between mb-4">
+                <div className="bg-gradient-to-r from-red-500 to-red-600 p-3 rounded-full">
+                  <FaYoutube className="text-white text-2xl" />
+                </div>
+                <FaEye className="text-gray-400 group-hover:text-gray-600 transition-colors" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">YouTube Analytics</h3>
+              <p className="text-gray-600 text-sm">Videos, views, and channel performance</p>
+            </div>
+          </Link>
+        </div>
+
+        {/* Platform Connection Section */}
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Connect Your Social Accounts</h2>
+          
+          {isLoading ? (
+            <div className="flex justify-center items-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {platforms.map((platform) => (
+                <SocialCard
+                  key={platform.name}
+                  platform={platform.name}
+                  icon={platform.icon}
+                  color={platform.color}
+                  connected={connectedPlatforms.includes(platform.name.toLowerCase())}
+                  onConnectSuccess={handleConnectSuccess}
+                  onConnectError={handleConnectError}
+                />
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Instagram Posts Section */}
-        <div className="mt-12">
+        <div className="bg-white rounded-xl shadow-lg p-8">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">Recent Instagram Posts</h2>
           <InstagramPosts />
         </div>
 
-      {/* About/How it Works Section */}
-      <div className="max-w-4xl mx-auto mt-10 mb-8 px-4">
-        <div className="bg-white/90 rounded-2xl shadow-lg p-8 border border-gray-100 flex flex-col md:flex-row items-center gap-8">
-          <div className="flex-1 mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold text-blue-600 mb-2 flex items-center gap-2">
-              <span>🚀</span> Automated Social Media Analytics Tool
-            </h2>
-            <p className="text-gray-700 mb-4">
-              Connect your favorite social platforms and get instant, automated insights into your online presence. Visualize your growth, engagement, and content performance—all in one place!
-            </p>
-            <ul className="space-y-2">
-              <li className="flex items-center gap-2 text-gray-700">
-                <span className="text-blue-500">🔗</span> Connect Instagram, Twitter (X), YouTube, and LinkedIn
-              </li>
-              <li className="flex items-center gap-2 text-gray-700">
-                <span className="text-purple-500">📊</span> Fetch posts, likes, comments, followers & more
-              </li>
-              <li className="flex items-center gap-2 text-gray-700">
-                <span className="text-pink-500">📈</span> Visualize analytics with beautiful graphs and tables
-              </li>
-              <li className="flex items-center gap-2 text-gray-700">
-                <span className="text-green-500">🔒</span> Secure, private, and easy to use (JWT Auth)
-              </li>
-            </ul>
-          </div>
-          <div className="flex-1 flex justify-center">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-gradient-to-br from-pink-400 to-yellow-400 rounded-xl p-4 flex flex-col items-center shadow">
-                <FaInstagram className="text-white text-3xl mb-1" />
-                <span className="text-white font-semibold">Instagram</span>
-              </div>
-              <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl p-4 flex flex-col items-center shadow">
-                <FaTwitter className="text-white text-3xl mb-1" />
-                <span className="text-white font-semibold">Twitter</span>
-              </div>
-              <div className="bg-gradient-to-br from-red-400 to-red-600 rounded-xl p-4 flex flex-col items-center shadow">
-                <FaYoutube className="text-white text-3xl mb-1" />
-                <span className="text-white font-semibold">YouTube</span>
-              </div>
-              <div className="bg-gradient-to-br from-blue-700 to-blue-400 rounded-xl p-4 flex flex-col items-center shadow">
-                <FaLinkedin className="text-white text-3xl mb-1" />
-                <span className="text-white font-semibold">LinkedIn</span>
+        {/* About/How it Works Section */}
+        <div className="max-w-4xl mx-auto mt-10 mb-8 px-4">
+          <div className="bg-white/90 rounded-2xl shadow-lg p-8 border border-gray-100 flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1 mb-6 md:mb-0">
+              <h2 className="text-2xl font-bold text-blue-600 mb-2 flex items-center gap-2">
+                <span>🚀</span> Automated Social Media Analytics Tool
+              </h2>
+              <p className="text-gray-700 mb-4">
+                Connect your favorite social platforms and get instant, automated insights into your online presence. Visualize your growth, engagement, and content performance—all in one place!
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-gray-700">
+                  <span className="text-blue-500">🔗</span> Connect Instagram, Twitter (X), YouTube, and LinkedIn
+                </li>
+                <li className="flex items-center gap-2 text-gray-700">
+                  <span className="text-purple-500">📊</span> Fetch posts, likes, comments, followers & more
+                </li>
+                <li className="flex items-center gap-2 text-gray-700">
+                  <span className="text-pink-500">📈</span> Visualize analytics with beautiful graphs and tables
+                </li>
+                <li className="flex items-center gap-2 text-gray-700">
+                  <span className="text-green-500">🔒</span> Secure, private, and easy to use (JWT Auth)
+                </li>
+              </ul>
+            </div>
+            <div className="flex-1 flex justify-center">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-gradient-to-br from-pink-400 to-yellow-400 rounded-xl p-4 flex flex-col items-center shadow">
+                  <FaInstagram className="text-white text-3xl mb-1" />
+                  <span className="text-white font-semibold">Instagram</span>
+                </div>
+                <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl p-4 flex flex-col items-center shadow">
+                  <FaTwitter className="text-white text-3xl mb-1" />
+                  <span className="text-white font-semibold">Twitter</span>
+                </div>
+                <div className="bg-gradient-to-br from-red-400 to-red-600 rounded-xl p-4 flex flex-col items-center shadow">
+                  <FaYoutube className="text-white text-3xl mb-1" />
+                  <span className="text-white font-semibold">YouTube</span>
+                </div>
+                <div className="bg-gradient-to-br from-blue-700 to-blue-400 rounded-xl p-4 flex flex-col items-center shadow">
+                  <FaLinkedin className="text-white text-3xl mb-1" />
+                  <span className="text-white font-semibold">LinkedIn</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

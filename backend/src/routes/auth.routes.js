@@ -1,13 +1,13 @@
 import express from "express";
+import { authenticateToken } from "../middleware/auth.js";
 import { registerUser, loginUser } from "../controllers/auth.controller.js";
-import { authenticate } from "../middleware/auth.js";
 
 const router = express.Router();
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.get("/dashboard", authenticate, (req, res) => {
-  res.json({ message: `Welcome user ${req.user.email}` });
+router.get("/dashboard", authenticateToken, (req, res) => {
+  res.json({ message: "Dashboard accessed successfully" });
 });
 
 export default router;

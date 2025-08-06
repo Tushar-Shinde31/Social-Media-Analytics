@@ -1,10 +1,10 @@
 import express from 'express';
-import { getInstagramPosts, saveInstagramPosts } from '../controllers/instagram.controller.js';
-import { authenticate } from '../middleware/auth.js';
+import { authenticateToken } from '../middleware/auth.js';
+import { saveInstagramPosts, getInstagramPosts } from '../controllers/instagram.controller.js';
 
 const router = express.Router();
 
-router.post('/save-posts', authenticate, saveInstagramPosts);
-router.get('/posts', authenticate, getInstagramPosts);
+router.post('/save-posts', authenticateToken, saveInstagramPosts);
+router.get('/posts', authenticateToken, getInstagramPosts);
 
 export default router;
