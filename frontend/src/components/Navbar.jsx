@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-white/80 shadow-md backdrop-blur-md">
       <div className="flex items-center gap-2">
-        <span className="text-2xl font-extrabold text-blue-600 tracking-tight">Sociolyze</span>
+        <span className="text-2xl font-extrabold text-blue-600 tracking-tight">AI.Sociolyze</span>
       </div>
       <div className="flex items-center gap-4">
         <span className="text-gray-700 font-medium text-sm hidden sm:block">{email}</span>
