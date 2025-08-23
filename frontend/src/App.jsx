@@ -5,6 +5,7 @@ import RegisterPage from './pages/Register'
 import InstagramAnalytics from './pages/dashboard/InstagramAnalytics'
 import YouTubeAnalytics from './features/youtube/pages/YouTubeAnalytics'
 import TwitterAnalytics from './features/twitter/pages/TwitterAnalytics'
+import Overview from './features/overview/pages/Overview'
 import PrivateRoute from './PrivateRoute'
 
 const appRouter = createBrowserRouter([
@@ -31,6 +32,10 @@ const appRouter = createBrowserRouter([
   {
     path: '/twitter',
     element: <PrivateRoute><TwitterAnalytics/></PrivateRoute>
+  },
+  {
+    path: '/overview',
+    element: <PrivateRoute><Overview/></PrivateRoute>
   }
 ])
 
