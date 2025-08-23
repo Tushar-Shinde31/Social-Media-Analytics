@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 // Helper to decode JWT and get email
 function getUserEmail() {
@@ -25,9 +25,25 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-white/80 shadow-md backdrop-blur-md">
       <div className="flex items-center gap-2">
-        <span className="text-2xl font-extrabold text-blue-600 tracking-tight">Sociolyze</span>
+        <Link to="/" className="text-2xl font-extrabold text-blue-600 tracking-tight hover:text-blue-700 transition-colors">
+          Sociolyze
+        </Link>
       </div>
       <div className="flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4">
+          <Link 
+            to="/instagram-analytics"
+            className="text-gray-700 hover:text-pink-600 font-medium text-sm transition-colors"
+          >
+            Instagram
+          </Link>
+          <Link 
+            to="/youtube"
+            className="text-gray-700 hover:text-red-600 font-medium text-sm transition-colors"
+          >
+            YouTube
+          </Link>
+        </div>
         <span className="text-gray-700 font-medium text-sm hidden sm:block">{email}</span>
         <button
           onClick={handleLogout}
