@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin, FaChartLine } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';  // ✅ uncommented import
+import Navbar from '../components/Navbar';
 import SocialCard from '../components/SocialCard';
 import InstagramPosts from '../components/InstagramPosts';
 import { api } from '../utils/api';
+import { useAuthContext } from '../contexts/AuthContext';
 
 const platforms = [
   {
@@ -30,6 +31,7 @@ const platforms = [
 ];
 
 const SocialDashboard = () => {
+  const { user } = useAuthContext();
   const [notification, setNotification] = useState({ show: false, message: '', type: '' });
   const [connectedPlatforms, setConnectedPlatforms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -46,6 +48,12 @@ const SocialDashboard = () => {
     const fetchConnectedPlatforms = async () => {
       try {
         const token = localStorage.getItem('token');
+        if (!token) {
+          setConnectedPlatforms([]);
+          setIsLoading(false);
+          return;
+        }
+        
         const response = await api.get('/social/status', {
           headers: {
             'Authorization': `Bearer ${token}`

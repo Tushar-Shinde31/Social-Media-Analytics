@@ -2,9 +2,11 @@ import { useState } from "react";
 import { api } from "../utils/api";
 import { useNavigate, Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import { useAuthContext } from "../contexts/AuthContext";
 
 export default function AuthForm({ type }) {
   const navigate = useNavigate();
+  const { login } = useAuthContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
@@ -17,9 +19,13 @@ export default function AuthForm({ type }) {
       const res = await api.post(`/auth/${type}`, { email, password });
 
       if (type === "login") {
-        localStorage.setItem("token", res.data.token);
-        navigate("/")
-        setMsg("Login successful!");
+        const success = login(res.data.token);
+        if (success) {
+          navigate("/");
+          setMsg("Login successful!");
+        } else {
+          setMsg("Invalid token received");
+        }
       } else {
         setMsg("Registration successful!");
       }

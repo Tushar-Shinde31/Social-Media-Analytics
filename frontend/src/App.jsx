@@ -1,4 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext'
+import SessionExpiryHandler from './components/SessionExpiryHandler'
+import AuthRouterSetup from './components/AuthRouterSetup'
 import SocialDashboard from './pages/SocialDashboard'
 import LoginPage from './pages/Login'
 import RegisterPage from './pages/Register'
@@ -11,36 +14,76 @@ import PrivateRoute from './PrivateRoute'
 const appRouter = createBrowserRouter([
   {
     path: '/',
-    element: <SocialDashboard/>
+    element: (
+      <>
+        <AuthRouterSetup />
+        <PrivateRoute><SocialDashboard/></PrivateRoute>
+      </>
+    )
   },
   {
     path: '/login',
-    element: <LoginPage/>
+    element: (
+      <>
+        <AuthRouterSetup />
+        <LoginPage/>
+      </>
+    )
   },
   {
     path: '/register',
-    element: <RegisterPage/>
+    element: (
+      <>
+        <AuthRouterSetup />
+        <RegisterPage/>
+      </>
+    )
   },
   {
     path: '/instagram-analytics',
-    element: <InstagramAnalytics/>
+    element: (
+      <>
+        <AuthRouterSetup />
+        <PrivateRoute><InstagramAnalytics/></PrivateRoute>
+      </>
+    )
   },
   {
     path: '/youtube',
-    element: <PrivateRoute><YouTubeAnalytics/></PrivateRoute>
+    element: (
+      <>
+        <AuthRouterSetup />
+        <PrivateRoute><YouTubeAnalytics/></PrivateRoute>
+      </>
+    )
   },
   {
     path: '/twitter',
-    element: <PrivateRoute><TwitterAnalytics/></PrivateRoute>
+    element: (
+      <>
+        <AuthRouterSetup />
+        <PrivateRoute><TwitterAnalytics/></PrivateRoute>
+      </>
+    )
   },
   {
     path: '/overview',
-    element: <PrivateRoute><Overview/></PrivateRoute>
+    element: (
+      <>
+        <AuthRouterSetup />
+        <PrivateRoute><Overview/></PrivateRoute>
+      </>
+    )
   }
 ])
 
 function App() {
-  return <RouterProvider router={appRouter}/>
+  return (
+    <AuthProvider>
+      <SessionExpiryHandler />
+      <RouterProvider router={appRouter}/>
+    </AuthProvider>
+  )
 }
 
 export default App;
