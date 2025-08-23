@@ -4,6 +4,7 @@ import LoginPage from './pages/Login'
 import RegisterPage from './pages/Register'
 import InstagramAnalytics from './pages/dashboard/InstagramAnalytics'
 import YouTubeAnalytics from './features/youtube/pages/YouTubeAnalytics'
+import TwitterAnalytics from './features/twitter/pages/TwitterAnalytics'
 import PrivateRoute from './PrivateRoute'
 
 const appRouter = createBrowserRouter([
@@ -26,6 +27,10 @@ const appRouter = createBrowserRouter([
   {
     path: '/youtube',
     element: <PrivateRoute><YouTubeAnalytics/></PrivateRoute>
+  },
+  {
+    path: '/twitter',
+    element: <PrivateRoute><TwitterAnalytics/></PrivateRoute>
   }
 ])
 

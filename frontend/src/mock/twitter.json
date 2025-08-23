@@ -1,0 +1,68 @@
+{
+  "tweets": [
+    {
+      "id": "tweet1",
+      "text": "Excited for the new project launch! Building something amazing with React and Node.js. Can't wait to share the results with everyone! 🚀 #coding #webdev",
+      "likes": 125,
+      "retweets": 30,
+      "replies": 15,
+      "createdAt": "2025-08-20T14:20:00Z"
+    },
+    {
+      "id": "tweet2",
+      "text": "Just wrote some clean backend code. Prisma + PostgreSQL is such a powerful combination for building scalable APIs. The type safety is incredible! 💻",
+      "likes": 78,
+      "retweets": 10,
+      "replies": 8,
+      "createdAt": "2025-08-19T11:05:00Z"
+    },
+    {
+      "id": "tweet3",
+      "text": "Tailwind CSS has completely changed how I approach frontend development. The utility-first approach is so intuitive and the results are beautiful! ✨",
+      "likes": 234,
+      "retweets": 45,
+      "replies": 22,
+      "createdAt": "2025-08-18T16:30:00Z"
+    },
+    {
+      "id": "tweet4",
+      "text": "Working on a social media analytics dashboard. The insights you can get from data visualization are mind-blowing! 📊 #analytics #dataviz",
+      "likes": 156,
+      "retweets": 28,
+      "replies": 12,
+      "createdAt": "2025-08-17T09:15:00Z"
+    },
+    {
+      "id": "tweet5",
+      "text": "JWT authentication implementation is complete! Secure, scalable, and easy to maintain. Security should never be an afterthought in web development. 🔒",
+      "likes": 89,
+      "retweets": 18,
+      "replies": 9,
+      "createdAt": "2025-08-16T13:45:00Z"
+    },
+    {
+      "id": "tweet6",
+      "text": "Git workflow strategies for team collaboration - branching, merging, and code reviews. Team productivity has increased significantly! 👥 #git #collaboration",
+      "likes": 67,
+      "retweets": 12,
+      "replies": 6,
+      "createdAt": "2025-08-15T10:20:00Z"
+    },
+    {
+      "id": "tweet7",
+      "text": "Mobile-first responsive design is the way to go. Users expect seamless experiences across all devices. The mobile revolution is real! 📱 #responsive #ux",
+      "likes": 198,
+      "retweets": 35,
+      "replies": 18,
+      "createdAt": "2025-08-14T15:10:00Z"
+    },
+    {
+      "id": "tweet8",
+      "text": "Database optimization techniques are crucial for performance. Indexing, query optimization, and proper schema design make all the difference! 🗄️ #database #performance",
+      "likes": 112,
+      "retweets": 25,
+      "replies": 14,
+      "createdAt": "2025-08-13T12:00:00Z"
+    }
+  ]
+}
