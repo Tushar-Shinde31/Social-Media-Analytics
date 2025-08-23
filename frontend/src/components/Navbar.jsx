@@ -43,6 +43,12 @@ const Navbar = () => {
           >
             YouTube
           </Link>
+          <Link 
+            to="/twitter"
+            className="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors"
+          >
+            Twitter
+          </Link>
         </div>
         <span className="text-gray-700 font-medium text-sm hidden sm:block">{email}</span>
         <button

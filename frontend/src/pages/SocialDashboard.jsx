@@ -138,6 +138,13 @@ const SocialDashboard = () => {
                   <FaYoutube />
                   YouTube Analytics
                 </Link>
+                <Link 
+                  to="/twitter"
+                  className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                >
+                  <FaTwitter />
+                  Twitter Analytics
+                </Link>
               </div>
             </div>
           </>
