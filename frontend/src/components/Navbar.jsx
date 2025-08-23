@@ -32,6 +32,12 @@ const Navbar = () => {
       <div className="flex items-center gap-4">
         <div className="hidden md:flex items-center gap-4">
           <Link 
+            to="/overview"
+            className="text-gray-700 hover:text-purple-600 font-medium text-sm transition-colors"
+          >
+            Overview
+          </Link>
+          <Link 
             to="/instagram-analytics"
             className="text-gray-700 hover:text-pink-600 font-medium text-sm transition-colors"
           >

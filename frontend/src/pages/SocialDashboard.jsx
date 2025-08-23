@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin, FaChartLine } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';  // ✅ uncommented import
 import SocialCard from '../components/SocialCard';
@@ -124,6 +124,13 @@ const SocialDashboard = () => {
             <div className="mt-8 text-center">
               <div className="inline-flex items-center gap-4 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-2xl shadow-lg border border-gray-100">
                 <span className="text-gray-700 font-medium">Quick Access:</span>
+                <Link 
+                  to="/overview"
+                  className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium transition-colors"
+                >
+                  <FaChartLine />
+                  Overview Analytics
+                </Link>
                 <Link 
                   to="/instagram-analytics"
                   className="flex items-center gap-2 text-pink-600 hover:text-pink-700 font-medium transition-colors"
