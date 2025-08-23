@@ -1,0 +1,68 @@
+{
+  "videos": [
+    {
+      "id": "abc123",
+      "title": "How to build an analytics dashboard with React and Tailwind CSS",
+      "thumbnailUrl": "https://i.ytimg.com/vi/abc123/hqdefault.jpg",
+      "views": 18234,
+      "likes": 1200,
+      "publishedAt": "2025-07-10T12:00:00Z"
+    },
+    {
+      "id": "def456",
+      "title": "React + Tailwind UI tips and tricks for modern web apps",
+      "thumbnailUrl": "https://i.ytimg.com/vi/def456/hqdefault.jpg",
+      "views": 52340,
+      "likes": 4300,
+      "publishedAt": "2025-08-02T15:30:00Z"
+    },
+    {
+      "id": "ghi789",
+      "title": "Building a social media analytics tool from scratch",
+      "thumbnailUrl": "https://i.ytimg.com/vi/ghi789/hqdefault.jpg",
+      "views": 89120,
+      "likes": 7200,
+      "publishedAt": "2025-07-25T09:15:00Z"
+    },
+    {
+      "id": "jkl012",
+      "title": "Node.js backend development best practices",
+      "thumbnailUrl": "https://i.ytimg.com/vi/jkl012/hqdefault.jpg",
+      "views": 45670,
+      "likes": 3800,
+      "publishedAt": "2025-08-15T14:20:00Z"
+    },
+    {
+      "id": "mno345",
+      "title": "Prisma ORM tutorial for PostgreSQL databases",
+      "thumbnailUrl": "https://i.ytimg.com/vi/mno345/hqdefault.jpg",
+      "views": 23450,
+      "likes": 2100,
+      "publishedAt": "2025-07-18T11:45:00Z"
+    },
+    {
+      "id": "pqr678",
+      "title": "JWT authentication implementation guide",
+      "thumbnailUrl": "https://i.ytimg.com/vi/pqr678/hqdefault.jpg",
+      "views": 67890,
+      "likes": 5600,
+      "publishedAt": "2025-08-08T16:30:00Z"
+    },
+    {
+      "id": "stu901",
+      "title": "Responsive design principles for mobile-first development",
+      "thumbnailUrl": "https://i.ytimg.com/vi/stu901/hqdefault.jpg",
+      "views": 34560,
+      "likes": 2900,
+      "publishedAt": "2025-07-30T13:10:00Z"
+    },
+    {
+      "id": "vwx234",
+      "title": "Git workflow strategies for team collaboration",
+      "thumbnailUrl": "https://i.ytimg.com/vi/vwx234/hqdefault.jpg",
+      "views": 78910,
+      "likes": 6400,
+      "publishedAt": "2025-08-12T10:25:00Z"
+    }
+  ]
+}
