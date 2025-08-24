@@ -60,13 +60,13 @@ export const useAuth = () => {
             setUser(null);
             setIsAuthenticated(false);
           }
-                 } else if (token && isTokenExpired(token)) {
-           // Token expired, clear it and show message
-           localStorage.removeItem('token');
-           setUser(null);
-           setIsAuthenticated(false);
-           // Dispatch session expiry event
-           createSessionExpiryEvent();
+        } else if (token && isTokenExpired(token)) {
+          // Token expired, clear it and show message
+          localStorage.removeItem('token');
+          setUser(null);
+          setIsAuthenticated(false);
+          // Dispatch session expiry event
+          createSessionExpiryEvent();
         } else {
           setUser(null);
           setIsAuthenticated(false);
@@ -129,11 +129,11 @@ export const useAuth = () => {
   useEffect(() => {
     if (isAuthenticated) {
       const interval = setInterval(() => {
-               if (!checkAuth()) {
-         // Token expired, logout user and show notification
-         createSessionExpiryEvent();
-         logout();
-       }
+        if (!checkAuth()) {
+          // Token expired, logout user and show notification
+          createSessionExpiryEvent();
+          logout();
+        }
       }, 60000); // Check every minute
 
       return () => clearInterval(interval);

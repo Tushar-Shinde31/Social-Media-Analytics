@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaInstagram, FaHeart, FaComment, FaClock, FaChartBar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { api } from '../utils/api';
+import { api } from '../../../shared/utils/api';
 
 const InstagramPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -100,73 +100,57 @@ const InstagramPosts = () => {
   return (
     <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
       <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
-          <FaInstagram className="text-pink-500 text-2xl" />
-          <h2 className="text-2xl font-bold text-gray-800">Instagram Posts</h2>
-          <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm font-medium">
-            {posts.length} posts
-          </span>
-        </div>
-        <Link
-          to="/instagram-analytics"
-          className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+        <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
+          <FaInstagram className="text-pink-500" />
+          Recent Instagram Posts
+        </h2>
+        <Link 
+          to="/instagram-analytics" 
+          className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-4 py-2 rounded-lg font-semibold shadow hover:from-pink-600 hover:to-purple-600 transition-all flex items-center gap-2"
         >
           <FaChartBar />
-          <span>View Analytics</span>
+          View Analytics
         </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map((post) => (
-          <div key={post.id} className="bg-gray-50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
-            {/* Media Section */}
-            <div className="relative aspect-square bg-gray-200">
-              {post.mediaUrl ? (
+        {posts.slice(0, 6).map((post) => (
+          <div key={post.id} className="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:shadow-md transition-shadow">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-2xl">{getMediaTypeIcon(post.mediaType)}</span>
+              <span className="text-sm text-gray-500">{post.mediaType}</span>
+            </div>
+            
+            {post.mediaUrl && (
+              <div className="mb-3">
                 <img 
                   src={post.mediaUrl} 
-                  alt={post.caption || 'Instagram post'}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
+                  alt={post.caption || 'Instagram post'} 
+                  className="w-full h-32 object-cover rounded-lg"
                 />
-              ) : null}
-              <div className="hidden absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end justify-start p-3">
-                <span className="text-white text-2xl">{getMediaTypeIcon(post.mediaType)}</span>
               </div>
+            )}
+            
+            <div className="space-y-2">
+              <p className="text-sm text-gray-700 line-clamp-3">
+                {truncateCaption(post.caption, 80)}
+              </p>
               
-              {/* Fallback for failed images */}
-              <div className="hidden absolute inset-0 bg-gradient-to-br from-pink-400 to-yellow-400 flex items-center justify-center">
-                <span className="text-white text-4xl">{getMediaTypeIcon(post.mediaType)}</span>
-              </div>
-            </div>
-
-            {/* Content Section */}
-            <div className="p-4">
-              {/* Caption */}
-              {post.caption && (
-                <p className="text-gray-700 text-sm mb-3 overflow-hidden text-ellipsis whitespace-nowrap">
-                  {truncateCaption(post.caption, 80)}
-                </p>
-              )}
-
-              {/* Stats */}
-              <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
-                <div className="flex items-center gap-1">
-                  <FaHeart className="text-red-500" />
-                  <span>{post.likeCount.toLocaleString()}</span>
+              <div className="flex items-center justify-between text-sm text-gray-500">
+                <div className="flex items-center gap-4">
+                  <span className="flex items-center gap-1">
+                    <FaHeart className="text-pink-500" />
+                    {post.likeCount || 0}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <FaComment className="text-blue-500" />
+                    {post.commentCount || 0}
+                  </span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <FaComment className="text-blue-500" />
-                  <span>{post.commentCount.toLocaleString()}</span>
-                </div>
-              </div>
-
-              {/* Timestamp */}
-              <div className="flex items-center gap-1 text-xs text-gray-500">
-                <FaClock />
-                <span>{formatTimestamp(post.timestamp)}</span>
+                <span className="flex items-center gap-1">
+                  <FaClock />
+                  {formatTimestamp(post.timestamp)}
+                </span>
               </div>
             </div>
           </div>
@@ -176,4 +160,4 @@ const InstagramPosts = () => {
   );
 };
 
-export default InstagramPosts; 
+export default InstagramPosts;

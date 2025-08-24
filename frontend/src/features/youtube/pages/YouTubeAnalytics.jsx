@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaYoutube, FaFilter, FaArrowLeft, FaSearch, FaSort } from 'react-icons/fa';
-import Navbar from '../../../components/Navbar';
+import Navbar from '../../../shared/components/Navbar';
 import YouTubeKPIs from '../components/YouTubeKPIs';
 import YouTubeVideoCard from '../components/YouTubeVideoCard';
 
@@ -20,7 +20,7 @@ const YouTubeAnalytics = () => {
         await new Promise(resolve => setTimeout(resolve, 1000));
         
         // Import mock data
-        const mockData = await import('../../../mock/youtube.json');
+        const mockData = await import('../../../shared/utils/mock/youtube.json');
         setVideos(mockData.videos || []);
         setFilteredVideos(mockData.videos || []);
       } catch (error) {

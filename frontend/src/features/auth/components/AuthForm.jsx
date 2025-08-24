@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { api } from "../utils/api";
+import { api } from "../../../shared/utils/api";
 import { useNavigate, Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
-import { useAuthContext } from "../contexts/AuthContext";
+import { useAuthContext } from "../../../shared/contexts/AuthContext";
 
 export default function AuthForm({ type }) {
   const navigate = useNavigate();

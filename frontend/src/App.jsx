@@ -1,15 +1,15 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { AuthProvider } from './contexts/AuthContext'
-import SessionExpiryHandler from './components/SessionExpiryHandler'
-import AuthRouterSetup from './components/AuthRouterSetup'
-import SocialDashboard from './pages/SocialDashboard'
-import LoginPage from './pages/Login'
-import RegisterPage from './pages/Register'
-import InstagramAnalytics from './pages/dashboard/InstagramAnalytics'
+import { AuthProvider } from './shared/contexts/AuthContext'
+import SessionExpiryHandler from './shared/components/SessionExpiryHandler'
+import AuthRouterSetup from './shared/components/AuthRouterSetup'
+import SocialDashboard from './shared/components/SocialDashboard'
+import LoginPage from './features/auth/pages/Login'
+import RegisterPage from './features/auth/pages/Register'
+import InstagramAnalytics from './features/instagram/pages/InstagramAnalytics'
 import YouTubeAnalytics from './features/youtube/pages/YouTubeAnalytics'
 import TwitterAnalytics from './features/twitter/pages/TwitterAnalytics'
 import Overview from './features/overview/pages/Overview'
-import PrivateRoute from './PrivateRoute'
+import PrivateRoute from './shared/components/PrivateRoute'
 
 const appRouter = createBrowserRouter([
   {

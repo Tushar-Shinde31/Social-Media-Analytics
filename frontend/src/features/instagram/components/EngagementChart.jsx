@@ -104,18 +104,14 @@ const EngagementChart = ({ posts }) => {
               axisLine={false}
               tickFormatter={(value) => value.toLocaleString()}
             />
-            <Tooltip
+            <Tooltip 
               contentStyle={{
                 backgroundColor: 'white',
                 border: '1px solid #e5e7eb',
                 borderRadius: '8px',
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
               }}
-              labelStyle={{ color: '#374151', fontWeight: 'bold' }}
-              formatter={(value, name) => [
-                value.toLocaleString(),
-                name === 'likes' ? 'Likes' : 'Comments'
-              ]}
+              labelStyle={{ fontWeight: 'bold', color: '#374151' }}
             />
             <Legend />
             <Line
@@ -131,30 +127,22 @@ const EngagementChart = ({ posts }) => {
       </div>
 
       {/* Summary Stats */}
-      <div className="mt-6 pt-6 border-t border-gray-100">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="text-center">
-            <p className="text-gray-600 text-sm">Total {selectedMetricData.label}</p>
-            <p className="text-2xl font-bold text-gray-800">
-              {chartData.reduce((sum, item) => sum + item[selectedMetric], 0).toLocaleString()}
-            </p>
+      <div className="mt-6 grid grid-cols-2 gap-4">
+        <div className="bg-gray-50 rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-gray-800">
+            {Math.max(...chartData.map(d => d[selectedMetric]))?.toLocaleString() || 0}
           </div>
-          <div className="text-center">
-            <p className="text-gray-600 text-sm">Average per Post</p>
-            <p className="text-2xl font-bold text-gray-800">
-              {Math.round(chartData.reduce((sum, item) => sum + item[selectedMetric], 0) / chartData.length).toLocaleString()}
-            </p>
+          <div className="text-sm text-gray-600">Peak {selectedMetric}</div>
+        </div>
+        <div className="bg-gray-50 rounded-lg p-4 text-center">
+          <div className="text-2xl font-bold text-gray-800">
+            {Math.round(chartData.reduce((sum, d) => sum + d[selectedMetric], 0) / chartData.length)?.toLocaleString() || 0}
           </div>
-          <div className="text-center">
-            <p className="text-gray-600 text-sm">Posts Analyzed</p>
-            <p className="text-2xl font-bold text-gray-800">
-              {chartData.length}
-            </p>
-          </div>
+          <div className="text-sm text-gray-600">Average {selectedMetric}</div>
         </div>
       </div>
     </div>
   );
 };
 
-export default EngagementChart; 
+export default EngagementChart;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin, FaChartLine } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import SocialCard from '../components/SocialCard';
-import InstagramPosts from '../components/InstagramPosts';
+import Navbar from './Navbar';
+import SocialCard from './SocialCard';
+import InstagramPosts from '../../features/instagram/components/InstagramPosts';
 import { api } from '../utils/api';
 import { useAuthContext } from '../contexts/AuthContext';
 
@@ -72,8 +72,12 @@ const SocialDashboard = () => {
       }
     };
 
-    fetchConnectedPlatforms();
-  }, []);
+    if (user) { // Only fetch if user is authenticated
+      fetchConnectedPlatforms();
+    } else {
+      setIsLoading(false);
+    }
+  }, [user]);
 
   const handleConnectSuccess = (platform) => {
     showNotification(`${platform} connected successfully!`, 'success');

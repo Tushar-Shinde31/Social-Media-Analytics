@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaTwitter, FaHeart, FaRetweet, FaComment } from 'react-icons/fa';
-import { formatNumber } from '../../../utils/format';
+import { formatNumber } from '../../../shared/utils/format';
 
 const TwitterKPIs = ({ tweets }) => {
   if (!tweets || tweets.length === 0) {

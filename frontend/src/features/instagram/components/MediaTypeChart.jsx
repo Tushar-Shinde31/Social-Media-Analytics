@@ -109,9 +109,10 @@ const MediaTypeChart = ({ posts }) => {
               data={chartData}
               cx="50%"
               cy="50%"
-              innerRadius={60}
-              outerRadius={120}
-              paddingAngle={5}
+              labelLine={false}
+              label={({ name, percentage }) => `${percentage}%`}
+              outerRadius={80}
+              fill="#8884d8"
               dataKey="value"
             >
               {chartData.map((entry, index) => (
@@ -125,47 +126,22 @@ const MediaTypeChart = ({ posts }) => {
       </div>
 
       {/* Summary Stats */}
-      <div className="mt-6 pt-6 border-t border-gray-100">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {chartData.map((item, index) => (
-            <div key={index} className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                {getMediaTypeIcon(item.name)}
-                <span className="text-sm font-medium text-gray-700">
-                  {getMediaTypeLabel(item.name)}
-                </span>
-              </div>
-              <p className="text-2xl font-bold text-gray-800">
-                {item.value}
-              </p>
-              <p className="text-sm text-gray-500">
-                {item.percentage}% of total
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Additional Insights */}
-      <div className="mt-6 pt-6 border-t border-gray-100">
-        <h4 className="text-lg font-semibold text-gray-800 mb-3">Content Insights</h4>
-        <div className="space-y-2">
-          {chartData.length > 0 && (
-            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <span className="text-gray-700">Most Common Type</span>
-              <span className="font-semibold text-gray-800">
-                {getMediaTypeLabel(chartData[0].name)} ({chartData[0].percentage}%)
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {chartData.map((item, index) => (
+          <div key={index} className="bg-gray-50 rounded-lg p-4 text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              {getMediaTypeIcon(item.name)}
+              <span className="text-sm font-medium text-gray-700">
+                {getMediaTypeLabel(item.name)}
               </span>
             </div>
-          )}
-          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-            <span className="text-gray-700">Total Posts Analyzed</span>
-            <span className="font-semibold text-gray-800">{posts.length}</span>
+            <div className="text-2xl font-bold text-gray-800">{item.value}</div>
+            <div className="text-sm text-gray-600">{item.percentage}% of total</div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default MediaTypeChart; 
+export default MediaTypeChart;
