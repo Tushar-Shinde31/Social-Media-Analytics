@@ -38,8 +38,6 @@ const SocialCard = ({ platform, icon, color, connected, onConnectSuccess, onConn
     }
   };
 
-
-
   return (
     <div className="flex flex-col items-center bg-white/90 rounded-2xl shadow-xl p-8 border border-gray-100 transition-transform hover:scale-105 hover:shadow-2xl">
       <div>{icon}</div>
@@ -74,4 +72,4 @@ const SocialCard = ({ platform, icon, color, connected, onConnectSuccess, onConn
   );
 };
 
-export default SocialCard; 
+export default SocialCard;

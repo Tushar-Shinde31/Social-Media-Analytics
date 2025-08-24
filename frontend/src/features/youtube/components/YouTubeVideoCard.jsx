@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaPlay, FaThumbsUp, FaCalendarAlt } from 'react-icons/fa';
-import { formatNumber, formatDate } from '../../../utils/format';
+import { formatNumber, formatDate } from '../../../shared/utils/format';
 
 const YouTubeVideoCard = ({ video }) => {
   const { title, thumbnailUrl, views, likes, publishedAt } = video;

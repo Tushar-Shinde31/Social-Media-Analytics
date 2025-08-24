@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaPlay, FaEye, FaChartLine } from 'react-icons/fa';
-import { formatNumber } from '../../../utils/format';
+import { formatNumber } from '../../../shared/utils/format';
 
 const YouTubeKPIs = ({ videos }) => {
   if (!videos || videos.length === 0) {

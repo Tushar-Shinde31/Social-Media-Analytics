@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaTwitter, FaFilter, FaArrowLeft, FaSearch, FaSort } from 'react-icons/fa';
-import Navbar from '../../../components/Navbar';
+import Navbar from '../../../shared/components/Navbar';
 import TwitterKPIs from '../components/TwitterKPIs';
 import TweetCard from '../components/TweetCard';
 
@@ -20,7 +20,7 @@ const TwitterAnalytics = () => {
         await new Promise(resolve => setTimeout(resolve, 1000));
         
         // Import mock data
-        const mockData = await import('../../../mock/twitter.json');
+        const mockData = await import('../../../shared/utils/mock/twitter.json');
         setTweets(mockData.tweets || []);
         setFilteredTweets(mockData.tweets || []);
       } catch (error) {

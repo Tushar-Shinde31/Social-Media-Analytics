@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaUsers, FaHeart, FaComment, FaTwitter, FaEye, FaChartLine, FaArrowLeft } from 'react-icons/fa';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import Navbar from '../../../components/Navbar';
-import { overviewData } from '../../../mock/overviewData';
-import { formatNumber } from '../../../utils/format';
+import Navbar from '../../../shared/components/Navbar';
+import { overviewData } from '../../../shared/utils/mock/overviewData';
+import { formatNumber } from '../../../shared/utils/format';
 
 const Overview = () => {
   const [data, setData] = useState(null);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaHeart, FaRetweet, FaComment, FaCalendarAlt } from 'react-icons/fa';
-import { formatNumber, formatDate } from '../../../utils/format';
+import { formatNumber, formatDate } from '../../../shared/utils/format';
 
 const TweetCard = ({ tweet }) => {
   const { text, likes, retweets, replies, createdAt } = tweet;

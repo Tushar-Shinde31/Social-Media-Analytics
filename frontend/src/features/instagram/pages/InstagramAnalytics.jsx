@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaInstagram, FaFilter, FaArrowLeft, FaCalendarAlt } from 'react-icons/fa';
-import Navbar from '../../components/Navbar';
-import TopPostCard from '../../components/Analytics/TopPostCard';
-import KPIStats from '../../components/Analytics/KPIStats';
-import EngagementChart from '../../components/Analytics/EngagementChart';
-import MediaTypeChart from '../../components/Analytics/MediaTypeChart';
-import { api } from '../../utils/api';
+import Navbar from '../../../shared/components/Navbar';
+import TopPostCard from '../components/TopPostCard';
+import KPIStats from '../components/KPIStats';
+import EngagementChart from '../components/EngagementChart';
+import MediaTypeChart from '../components/MediaTypeChart';
+import { api } from '../../../shared/utils/api';
 
 const InstagramAnalytics = () => {
   const [posts, setPosts] = useState([]);

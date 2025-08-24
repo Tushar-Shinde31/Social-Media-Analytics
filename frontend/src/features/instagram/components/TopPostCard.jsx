@@ -99,27 +99,27 @@ const TopPostCard = ({ posts }) => {
             <div className="space-y-3">
               <div className="flex items-center justify-between bg-white/10 rounded-lg p-3">
                 <div className="flex items-center gap-2">
-                  <FaHeart className="text-red-400" />
+                  <FaHeart className="text-red-300" />
                   <span className="text-white font-semibold">Likes</span>
                 </div>
-                <span className="text-white font-bold text-lg">
-                  {topPost.likeCount.toLocaleString()}
+                <span className="text-yellow-200 font-bold text-lg">
+                  {topPost.likeCount?.toLocaleString() || 0}
                 </span>
               </div>
 
               <div className="flex items-center justify-between bg-white/10 rounded-lg p-3">
                 <div className="flex items-center gap-2">
-                  <FaComment className="text-blue-400" />
+                  <FaComment className="text-blue-300" />
                   <span className="text-white font-semibold">Comments</span>
                 </div>
-                <span className="text-white font-bold text-lg">
-                  {topPost.commentCount.toLocaleString()}
+                <span className="text-yellow-200 font-bold text-lg">
+                  {topPost.commentCount?.toLocaleString() || 0}
                 </span>
               </div>
 
               <div className="flex items-center justify-between bg-white/10 rounded-lg p-3">
                 <span className="text-white font-semibold">Posted</span>
-                <span className="text-yellow-100 text-sm">
+                <span className="text-yellow-200 font-medium">
                   {formatTimestamp(topPost.timestamp)}
                 </span>
               </div>
@@ -131,4 +131,4 @@ const TopPostCard = ({ posts }) => {
   );
 };
 
-export default TopPostCard; 
+export default TopPostCard;
