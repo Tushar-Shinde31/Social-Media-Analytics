@@ -110,6 +110,36 @@ const InstagramAnalytics = () => {
     );
   }
 
+  const connectInstagram = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const { data } = await api.get('/instagram/auth/start', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      window.location.href = data.url;
+    } catch (e) {
+      setError('Failed to start Instagram OAuth');
+    }
+  };
+
+  const syncLatest = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const { data } = await api.post('/instagram/sync', {}, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const fetchedPosts = data.posts || [];
+      setPosts(fetchedPosts);
+      setFilteredPosts(fetchedPosts);
+    } catch (e) {
+      if (e?.response?.status === 401 && e?.response?.data?.code === 'IG_TOKEN_EXPIRED') {
+        setError('Instagram connection expired. Please reconnect.');
+      } else {
+        setError('Failed to sync Instagram posts');
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
       <Navbar />
@@ -135,8 +165,20 @@ const InstagramAnalytics = () => {
             </div>
           </div>
 
-          {/* Filter Controls */}
+          {/* Actions + Filter Controls */}
           <div className="flex items-center gap-3">
+            <button 
+              onClick={connectInstagram}
+              className="hidden sm:inline-flex bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition-colors"
+            >
+              Connect Instagram
+            </button>
+            <button 
+              onClick={syncLatest}
+              className="hidden sm:inline-flex bg-white text-pink-600 border border-pink-500 px-4 py-2 rounded-lg hover:bg-pink-50 transition-colors"
+            >
+              Sync latest posts
+            </button>
             <FaFilter className="text-gray-500" />
             <select
               value={timeFilter}
@@ -214,12 +256,20 @@ const InstagramAnalytics = () => {
             <p className="text-gray-600 mb-4">
               Connect your Instagram account to start seeing analytics and insights.
             </p>
-            <button 
-              onClick={() => window.history.back()}
-              className="bg-pink-500 text-white px-6 py-2 rounded-lg hover:bg-pink-600 transition-colors"
-            >
-              Connect Instagram
-            </button>
+            <div className="flex items-center justify-center gap-4">
+              <button 
+                onClick={connectInstagram}
+                className="bg-pink-500 text-white px-6 py-2 rounded-lg hover:bg-pink-600 transition-colors"
+              >
+                Connect Instagram
+              </button>
+              <button 
+                onClick={syncLatest}
+                className="bg-white text-pink-600 border border-pink-500 px-6 py-2 rounded-lg hover:bg-pink-50 transition-colors"
+              >
+                Sync latest posts
+              </button>
+            </div>
           </div>
         )}
       </div>

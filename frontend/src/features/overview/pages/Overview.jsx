@@ -10,7 +10,6 @@ const Overview = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading mock data
     const loadMockData = async () => {
       try {
         setIsLoading(true);

@@ -81,7 +81,7 @@ export default function AuthForm({ type }) {
           {type === "login" ? (
             <span className="text-gray-600 text-sm">
               Don't have an account?{' '}
-              <Link to="/" className="text-blue-600 hover:underline font-medium">Register</Link>
+              <Link to="/register" className="text-blue-600 hover:underline font-medium">Register</Link>
             </span>
           ) : (
             <span className="text-gray-600 text-sm">

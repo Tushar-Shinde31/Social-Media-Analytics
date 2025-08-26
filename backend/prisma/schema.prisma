@@ -44,3 +44,22 @@ model InstagramPost {
   userId        Int
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+/// Daily post metrics snapshot
+model IgPostMetricDaily {
+  id           Int      @id @default(autoincrement())
+  postId       String
+  likeCount    Int
+  commentCount Int
+  capturedAt   DateTime @default(now())
+}
+
+/// Daily platform-level metrics snapshot
+model PlatformMetricDaily {
+  id         Int      @id @default(autoincrement())
+  platform   String
+  userId     Int
+  followers  Int?
+  posts      Int?
+  capturedAt DateTime @default(now())
+}
